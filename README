@@ -1,13 +1,16 @@
-This project contains the necessary files for the “Yoga postures detection and correction” collab file.  This project contains the following files:
+This project contains the necessary files for the “Yoga postures detection and correction” Colab file.
+This git project contains the following files:
 
 - angle_computation.py– This file contains the helper functions for the calculation of the straight lines and angles of the posture.
 
 - cobra.py, dog.py, warrior2.py, tree.py – These files contain posture specific angle calculations functions that uses the helper function in angle_computation.py.
 
-- cobra, dog, warrior2, tree – Data frame that contains all the training data key-points coordination’s of each posture used for finding the K-nearest-neighbours of a given image.
+- cobra, dog, warrior2, tree – Data frame that contains all the training data key-points coordinates of each posture used for finding the K-nearest-neighbours of a given image.
 
 - Weights.best.hdf5 – The trained fully connected model that we use for the classification of yoga postures.
 
 - movenet_thunder.tflite – The trained movenet network.
 
 - Crawler.py – A crawler that collects images from “Google Images” for the training data. This file isn’t necessary for the Google collab file to run, but it is still a part of the project used for the data collection part.
+
+- project_book.pdf - Full explanation of the project, from data collection and cleaning, to training the models and buliding the server and android application.
