@@ -79,7 +79,7 @@ def get_the_small_angle(data, m1_str, m2_str):
 # body based on certain conditions.
 
 
-def right_arm_fixing(data, apply_function):
+def right_arm_data_writing(data, apply_function):
     data['right_arm_top_m'] = data.apply(m, axis=1, args=('RIGHT_SHOULDER_x',
                                                           'RIGHT_ELBOW_x',
                                                           'RIGHT_SHOULDER_y',
@@ -103,7 +103,7 @@ def right_arm_fixing(data, apply_function):
                                                  'right_arm_bottom_m'))
 
 
-def left_arm_fixing(data, apply_function):
+def left_arm_data_writing(data, apply_function):
     data['left_arm_top_m'] = data.apply(m, axis=1, args=('LEFT_SHOULDER_x',
                                                          'LEFT_ELBOW_x',
                                                          'LEFT_SHOULDER_y',
@@ -125,7 +125,7 @@ def left_arm_fixing(data, apply_function):
                                                 'left_arm_bottom_m'))
 
 
-def nose_sholder_right_fixing(data):
+def nose_sholder_right_data_writing(data):
     data['nose_sholder_right_m'] = data.apply(m, axis=1,
                                               args=('NOSE_x',
                                                     'RIGHT_SHOULDER_x',
@@ -138,7 +138,7 @@ def nose_sholder_right_fixing(data):
                                                     'RIGHT_SHOULDER_y'))
 
 
-def nose_sholder_left_fixing(data):
+def nose_sholder_left_data_writing(data):
     data['nose_sholder_left_m'] = data.apply(m, axis=1, args=('NOSE_x',
                                                               'LEFT_SHOULDER_x',
                                                               'NOSE_y',
@@ -147,14 +147,14 @@ def nose_sholder_left_fixing(data):
                                                               'LEFT_SHOULDER_x', 'NOSE_y', 'LEFT_SHOULDER_y'))
 
 
-def shoulders_fixing(data):
+def shoulders_data_writing(data):
     data['shoulders_m'] = data.apply(m, axis=1, args=(
         'RIGHT_SHOULDER_x', 'LEFT_SHOULDER_x', 'RIGHT_SHOULDER_y', 'LEFT_SHOULDER_y'))
     data['shoulders_b'] = data.apply(b, axis=1, args=(
         'RIGHT_SHOULDER_x', 'LEFT_SHOULDER_x', 'RIGHT_SHOULDER_y', 'LEFT_SHOULDER_y'))
 
 
-def left_leg_fixing(data, apply_function):
+def left_leg_data_writing(data, apply_function):
     data['left_leg_bottom_m'] = data.apply(m, axis=1,
                                            args=("LEFT_ANKLE_x", 'LEFT_KNEE_x', 'LEFT_ANKLE_y', 'LEFT_KNEE_y'))
     data['left_leg_bottom_b'] = data.apply(b, axis=1, args=("LEFT_ANKLE_x", 'LEFT_KNEE_x',
@@ -170,7 +170,7 @@ def left_leg_fixing(data, apply_function):
                                          ))
 
 
-def right_leg_fixing(data, apply_function):
+def right_leg_data_writing(data, apply_function):
     data['right_leg_bottom_m'] = data.apply(m, axis=1, args=(
         "RIGHT_ANKLE_x", 'RIGHT_KNEE_x',
         'RIGHT_ANKLE_y', 'RIGHT_KNEE_y'))
@@ -185,7 +185,7 @@ def right_leg_fixing(data, apply_function):
                                           args=('right_leg_up_m',
                                                 'right_leg_bottom_m'))
 
-def right_shoulder_hip_fixing(data):
+def right_shoulder_hip_data_writing(data):
     data['right_shoulder_hip_m'] = data.apply(m, axis=1,
                                               args=
                                               ('RIGHT_SHOULDER_x', 'RIGHT_HIP_x', 'RIGHT_SHOULDER_y', 'RIGHT_HIP_y'))
@@ -194,7 +194,7 @@ def right_shoulder_hip_fixing(data):
                                               ('RIGHT_SHOULDER_x', 'RIGHT_HIP_x', 'RIGHT_SHOULDER_y', 'RIGHT_HIP_y'))
 
 
-def left_shoulder_hip_fixing(data):
+def left_shoulder_hip_data_writing(data):
     data['left_shoulder_hip_m'] = data.apply(m, axis=1,
                                              args=('LEFT_SHOULDER_x', 'LEFT_HIP_x', 'LEFT_SHOULDER_y', 'LEFT_HIP_y'))
     data['left_shoulder_hip_b'] = data.apply(b, axis=1,
@@ -210,7 +210,7 @@ def head_angle(data):
                                                 'right_arm_top_m'))
 
 
-def sholders_angle_fixing(data, apply_function_left, apply_function_right):
+def sholders_angle_data_writing(data, apply_function_left, apply_function_right):
     data["sholder_angle_left"] = data.apply(apply_function_left, axis=1,
                                             args=('left_shoulder_hip_m',
                                                   'left_arm_top_m'))
@@ -219,7 +219,7 @@ def sholders_angle_fixing(data, apply_function_left, apply_function_right):
                                                    'right_shoulder_hip_m'))
 
 
-def hip_angle_fixing(data):
+def hip_angle_data_writing(data):
     data["hip_angle_left"] = data.apply(get_the_small_angle, axis=1,
                                         args=('left_leg_up_m',
                                               'left_shoulder_hip_m'))
@@ -230,22 +230,22 @@ def hip_angle_fixing(data):
 
 ###########################Joint calculation functions#########################
 
-def data_fixing(name_posture, knee_left, knee_right, elbow_right,
+def data_data_writing(name_posture, knee_left, knee_right, elbow_right,
                 elbow_left, shoulders_left, shoulders_right):
     with open(name_posture, 'rb') as f:
         data = pickle.load(f)
     data = data
-    left_leg_fixing(data, knee_left)
-    right_leg_fixing(data, knee_right)
-    right_arm_fixing(data, elbow_right)
-    left_arm_fixing(data, elbow_left)
-    nose_sholder_right_fixing(data)
-    nose_sholder_left_fixing(data)
-    shoulders_fixing(data)
-    right_shoulder_hip_fixing(data)
-    left_shoulder_hip_fixing(data)
-    sholders_angle_fixing(data, shoulders_left, shoulders_right)
-    hip_angle_fixing(data)
+    left_leg_data_writing(data, knee_left)
+    right_leg_data_writing(data, knee_right)
+    right_arm_data_writing(data, elbow_right)
+    left_arm_data_writing(data, elbow_left)
+    nose_sholder_right_data_writing(data)
+    nose_sholder_left_data_writing(data)
+    shoulders_data_writing(data)
+    right_shoulder_hip_data_writing(data)
+    left_shoulder_hip_data_writing(data)
+    sholders_angle_data_writing(data, shoulders_left, shoulders_right)
+    hip_angle_data_writing(data)
     return data
 
 

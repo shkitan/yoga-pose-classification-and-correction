@@ -75,7 +75,7 @@ def left_knee(data, m1_str, m2_str):
 
 
 def warrior2(name_posture, output_name, is_old=False):
-    data = data_fixing(name_posture, left_knee, right_knee, right_elbow,
+    data = data_data_writing(name_posture, left_knee, right_knee, right_elbow,
                        left_elbow, left_shoulder, right_shoulder)
     # clean outliers
     if len(data) > 1:

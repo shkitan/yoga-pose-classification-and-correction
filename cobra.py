@@ -127,7 +127,7 @@ def knee_left(data, m1_str, m2_str):
 # #########################Test posture functions#########################
 
 def cobra(name_posture, output_name, is_old=False):
-    data = data_fixing(name_posture, knee_left, knee_right, elbow_right,
+    data = data_data_writing(name_posture, knee_left, knee_right, elbow_right,
                        elbow_left, shoulders_left, shoulders_right)
 
     if is_old:
